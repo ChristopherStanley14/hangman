@@ -1,0 +1,10 @@
+#hangman {
+  padding: 0;
+  margin: auto;
+  display: block;
+}
+
+button {
+  margin-top: 25px;
+  width: 130px;
+}
