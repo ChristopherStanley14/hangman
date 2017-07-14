@@ -30,6 +30,7 @@ var wordList = [
 ];
 
 var randomWord = wordList[Math.random() * wordList.length | 0];
+
 function hang() {
   switch (turn) {
     case 0:
@@ -75,27 +76,29 @@ function hang() {
   }
 }
 
-// Base
+function draw(pathFromx, pathFromy, pathTox, pathToy) {
+  context.beginPath();
+  context.moveTo(pathFromx, pathFromy);
+  context.lineTo(pathTox, pathToy);
+  context.stroke();
+}
+
 function base() {
   context.fillRect(50, 450, 300, 20);
 }
 
-// Base2
 function base2() {
   context.fillRect(75, 0, 20, 450);
 }
 
-// Base3
 function base3() {
   context.fillRect(75, 0, 130, 20);
 }
 
-// Base4
 function base4() {
   context.fillRect(190, 0, 20, 50);
 }
 
-// Head
 function head() {
   context.beginPath();
   context.arc(200, 100, 50, 0, Math.PI * 2, true);
@@ -104,42 +107,22 @@ function head() {
   context.stroke();
 }
 
-// Body
 function body() {
-  context.beginPath();
-  context.moveTo(200, 150);
-  context.lineTo(200, 301);
-  context.stroke();
+  draw(200, 150, 200, 301);
 }
 
-// Left Arm
 function leftArm() {
-  context.beginPath();
-  context.moveTo(200, 170);
-  context.lineTo(150, 240);
-  context.stroke();
+  draw(200, 170, 150, 240);
 }
 
-// Right Arm
 function rightArm() {
-  context.beginPath();
-  context.moveTo(200, 170);
-  context.lineTo(250, 240);
-  context.stroke();
+  draw(200, 170, 250, 240);
 }
 
-// Left Leg
 function leftLeg() {
-  context.beginPath();
-  context.moveTo(200, 300);
-  context.lineTo(150, 370);
-  context.stroke();
+  draw(200, 300, 150, 370);
 }
 
-// Right Leg
 function rightLeg() {
-  context.beginPath();
-  context.moveTo(200, 300);
-  context.lineTo(250, 370);
-  context.stroke();
+  draw(200, 300, 250, 370);
 }
