@@ -2,6 +2,7 @@ var canvas = document.getElementById('hangman');
 var context = canvas.getContext('2d');
 context.fillStyle = 'black';
 var turn = 0;
+var button;
 var wordList = [
   "Rails",
   "AngularJS",
@@ -29,7 +30,13 @@ var wordList = [
   "closure"
 ];
 
+var alphabet = [
+  "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
+  "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"
+];
+
 var randomWord = wordList[Math.random() * wordList.length | 0];
+console.log(randomWord);
 
 function hang() {
   switch (turn) {
@@ -126,3 +133,70 @@ function leftLeg() {
 function rightLeg() {
   draw(200, 300, 250, 370);
 }
+
+function guess(e) {
+  // console.log(e);
+  document.getElementById(e).disabled = true;
+  var word = randomWord.split("");
+  var guess = word.filter(function(letter) {
+    return letter == e;
+  });
+  if (guess.length > 0) {
+    // console.log(guess);
+    setupWord(e, true);
+  } else {
+    console.log("wrong");
+    hang();
+  }
+}
+
+function setupWord(letter, correct) {
+  var myNode = document.getElementById("word");
+  while (myNode.firstChild) {
+    myNode.removeChild(myNode.firstChild);
+  }
+
+  if (correct) {
+    for (var i = 0; i < randomWord.length; i++) {
+      var div = document.createElement("div");
+      div.style.width = "25px";
+      div.style.height = "50px";
+      div.style.float = "left";
+      if (randomWord[i].toLowerCase() == letter) {
+        div.innerHTML = randomWord[i];
+      } else {
+        div.innerHTML = "_";
+      }
+      document.getElementById("word").appendChild(div);
+      div.setAttribute("class", randomWord[i]);
+    }
+  }
+  else {
+    for (var i = 0; i < randomWord.length; i++) {
+      var div = document.createElement("div");
+      div.style.width = "25px";
+      div.style.height = "50px";
+      div.style.float = "left";
+      div.innerHTML = "_";
+      document.getElementById("word").appendChild(div);
+      div.setAttribute("class", randomWord[i]);
+    }
+  }
+}
+
+function setupButtons() {
+  alphabet.forEach(function(e) {
+    button = document.createElement("button");
+    button.innerHTML = e;
+    button.style.width = "30px";
+    button.style.margin = "5px";
+    document.getElementById("letters").appendChild(button);
+    button.setAttribute("id", e);
+    button.addEventListener("click", function() {
+      guess(e);
+    });
+  });
+}
+
+setupButtons();
+setupWord(null, false);

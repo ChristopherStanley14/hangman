@@ -4,6 +4,17 @@
   display: block;
 }
 
+#word {
+  /*border: solid 1px blue;*/
+  font-size: 25px;
+  height: 100px;
+  width: 600px;
+  padding-left: 154px;
+  padding-top: 25px;
+  margin: auto;
+  display: block;
+}
+
 button {
   margin-top: 25px;
   width: 130px;
