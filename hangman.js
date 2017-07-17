@@ -79,6 +79,14 @@ function hang() {
     case 9:
       rightLeg();
       turn++;
+      setTimeout(function() {
+        alert("You Lose!");
+      }, 200);
+      myLetters = document.getElementById("letters");
+      while (myLetters.firstChild) {
+        myLetters.removeChild(myLetters.firstChild);
+      }
+
       break;
   }
 }
@@ -137,7 +145,7 @@ function rightLeg() {
 function guess(e) {
   // console.log(e);
   document.getElementById(e).disabled = true;
-  var word = randomWord.split("");
+  var word = randomWord.toLowerCase().split("");
   var guess = word.filter(function(letter) {
     return letter == e;
   });
@@ -170,8 +178,7 @@ function setupWord(letter, correct) {
       document.getElementById("word").appendChild(div);
       div.setAttribute("class", randomWord[i]);
     }
-  }
-  else {
+  } else {
     for (var i = 0; i < randomWord.length; i++) {
       var div = document.createElement("div");
       div.style.width = "25px";
