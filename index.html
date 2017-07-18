@@ -9,12 +9,15 @@
 </head>
 
 <body>
-  <canvas id="hangman" width="400" height="500" style="border: solid 1px black"></canvas>
-  <div class="col-md-12 text-center">
-    <!-- <button onclick="guess()" class="btn btn-primary">Guess</button> -->
+  <div class="col-md-12 text-center title">
+    HANGMAN
   </div>
+  <canvas id="hangman" width="400" height="500"></canvas>
+  <div class="col-md-12 text-center"></div>
   <div id="word" class="col-md-12 text-center"></div>
   <div id="letters" class="col-md-12 text-center"></div>
+  <button onclick="guess()" class="btn btn-danger text-center">Restart</button>
+
   <script src="hangman.js"></script>
 </body>
 
