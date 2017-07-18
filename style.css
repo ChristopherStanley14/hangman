@@ -37,7 +37,7 @@ button {
   display: block;
   margin: auto;
   padding: 0;
-  margin-top: 50px;
+  margin-top: 20px;
   height: 50px;
   width: 130px;
   background-color: #9e0912;
@@ -62,4 +62,18 @@ body {
   background: -ms-radial-gradient(center, ellipse cover, rgba(28, 28, 28, 1) 0%, rgba(43, 43, 43, 1) 0%, rgba(17, 17, 17, 1) 0%, rgba(19, 19, 19, 1) 0%, rgba(0, 0, 0, 1) 0%, rgba(44, 44, 44, 1) 0%, rgba(89, 89, 89, 1) 100%);
   background: radial-gradient(ellipse at center, rgba(28, 28, 28, 1) 0%, rgba(43, 43, 43, 1) 0%, rgba(17, 17, 17, 1) 0%, rgba(19, 19, 19, 1) 0%, rgba(0, 0, 0, 1) 0%, rgba(44, 44, 44, 1) 0%, rgba(89, 89, 89, 1) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1c1c1c', endColorstr='#595959', GradientType=1)
+}
+
+#category {
+  display: block;
+  margin: auto;
+  padding: 0;
+  margin-top: 10px;
+  height: 50px;
+  width: 190px;
+  border: solid 1px black;
+  border-radius: 5px;
+  font-family: courier;
+  font-weight: bold;
+  font-size: 20px;
 }

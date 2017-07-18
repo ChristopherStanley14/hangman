@@ -3,7 +3,7 @@ var context = canvas.getContext('2d');
 context.fillStyle = 'black';
 var turn = 0;
 var button;
-var wordList = [
+var programmingList = [
   "rails", "angular", "bootstrap", "ruby", "javaScript",
   "authentication", "function", "array", "object", "sublime",
   "github", "agile", "route", "database", "model", "view",
@@ -16,14 +16,114 @@ var wordList = [
   "program", "pseudocode", "public", "domain", "overload"
 ];
 
+var foodList = [
+  "burger", "hotdog", "pizza", "tacos", "bacon",
+  "brownie", "burrito", "cheese", "cake", "apple",
+  "lemon", "chocolate", "chicken", "pasta", "bread",
+  "honey", "mustard", "ketchup", "jellybeans", "macaroni",
+  "pickles", "sandwich", "pancake", "eggs", "grapes"
+];
+
 var alphabet = [
   "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
   "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"
 ];
 
+var displayWord = [];
+var wordList = programmingList.concat(foodList);
 var randomWord = wordList[Math.random() * wordList.length | 0];
 console.log(randomWord);
-var displayWord = [];
+
+function getCategory() {
+  resetButtons();
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  turn = 0;
+  displayWord = [];
+  var dropdown = document.getElementById("category");
+  var category = dropdown.options[dropdown.selectedIndex].value;
+  getWord(category);
+  console.log(category);
+}
+
+function resetButtons() {
+  document.getElementById('a').disabled = false;
+  document.getElementById('b').disabled = false;
+  document.getElementById('c').disabled = false;
+  document.getElementById('d').disabled = false;
+  document.getElementById('e').disabled = false;
+  document.getElementById('f').disabled = false;
+  document.getElementById('g').disabled = false;
+  document.getElementById('h').disabled = false;
+  document.getElementById('i').disabled = false;
+  document.getElementById('j').disabled = false;
+  document.getElementById('k').disabled = false;
+  document.getElementById('l').disabled = false;
+  document.getElementById('m').disabled = false;
+  document.getElementById('n').disabled = false;
+  document.getElementById('o').disabled = false;
+  document.getElementById('p').disabled = false;
+  document.getElementById('q').disabled = false;
+  document.getElementById('r').disabled = false;
+  document.getElementById('s').disabled = false;
+  document.getElementById('t').disabled = false;
+  document.getElementById('u').disabled = false;
+  document.getElementById('v').disabled = false;
+  document.getElementById('w').disabled = false;
+  document.getElementById('x').disabled = false;
+  document.getElementById('y').disabled = false;
+  document.getElementById('z').disabled = false;
+}
+
+
+function getWord(category) {
+  if (category == "category") {
+    wordList = programmingList.concat(foodList);
+    randomWord = wordList[Math.random() * wordList.length | 0];
+    randomWord = randomWord.split("");
+    randomWord.forEach(function(letter) {
+      displayWord.push("_");
+    });
+    displayWord = displayWord.join(" ");
+
+    var div = document.createElement("div");
+    div.innerHTML = displayWord;
+    div.setAttribute("id", "word");
+    document.getElementById("word").appendChild(div);
+    console.log(randomWord);
+  }
+
+  if (category == "food") {
+    randomWord = foodList[Math.random() * foodList.length | 0];
+    randomWord = randomWord.split("");
+    randomWord.forEach(function(letter) {
+      displayWord.push("_");
+    });
+    displayWord = displayWord.join(" ");
+
+    var div = document.createElement("div");
+    div.innerHTML = displayWord;
+    div.setAttribute("id", "word");
+    document.getElementById("word").appendChild(div);
+    console.log(randomWord);
+  }
+
+  if (category == "programming") {
+    randomWord = programmingList[Math.random() * programmingList.length | 0];
+    randomWord = randomWord.split("");
+    randomWord.forEach(function(letter) {
+      displayWord.push("_");
+    });
+    displayWord = displayWord.join(" ");
+
+    var div = document.createElement("div");
+    div.innerHTML = displayWord;
+    div.setAttribute("id", "word");
+    document.getElementById("word").appendChild(div);
+    console.log(randomWord);
+  }
+  updateWord()
+}
+
 
 function hang() {
   switch (turn) {
@@ -181,6 +281,7 @@ function checkWin() {
 }
 
 function setupWord() {
+  console.log(randomWord);
   randomWord = randomWord.split("");
   randomWord.forEach(function(letter) {
     displayWord.push("_");
@@ -199,11 +300,13 @@ function setupButtons() {
     button.innerHTML = e;
     document.getElementById("letters").appendChild(button);
     button.setAttribute("id", e);
+    button.setAttribute("class", "letter");
     button.addEventListener("click", function() {
       guess(e);
     });
   });
 }
 
+
 setupButtons();
-setupWord(false);
+setupWord();

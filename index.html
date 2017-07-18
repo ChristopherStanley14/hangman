@@ -13,11 +13,14 @@
     HANGMAN
   </div>
   <canvas id="hangman" width="400" height="500"></canvas>
-  <div class="col-md-12 text-center"></div>
   <div id="word" class="col-md-12 text-center"></div>
   <div id="letters" class="col-md-12 text-center"></div>
+  <select id="category" name="category" onchange="getCategory()">
+    <option value="category">Category</option>
+    <option value="programming">Programming</option>
+    <option value="food">Food</option>
+  </select>
   <button onclick="location=''" class="btn btn-danger text-center">Restart</button>
-
   <script type="text/javascript" src="hangman.js"></script>
 </body>
 
