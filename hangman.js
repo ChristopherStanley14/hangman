@@ -76,7 +76,7 @@ function resetButtons() {
 
 
 function getWord(category) {
-  if (category == "category") {
+  if (category == "all") {
     wordList = programmingList.concat(foodList);
     randomWord = wordList[Math.random() * wordList.length | 0];
     randomWord = randomWord.split("");
