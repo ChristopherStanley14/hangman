@@ -8,12 +8,8 @@ var programmingList = [
   "authentication", "function", "array", "object", "sublime",
   "github", "agile", "route", "database", "model", "view",
   "controller", "terminal", "array", "data", "software",
-  "inheritance", "heroku", "scope", "closure", "alert",
   "apple", "microsoft", "computer", "boolean", "variable",
-  "conditional", "string", "number", "python", "swift",
-  "java", "developer", "django", "framework", "loop",
-  "binary", "method", "class", "module","operator",
-  "program", "pseudocode", "public", "domain", "overload"
+
 ];
 
 var foodList = [
@@ -22,6 +18,22 @@ var foodList = [
   "lemon", "chocolate", "chicken", "pasta", "bread",
   "honey", "mustard", "ketchup", "jellybeans", "macaroni",
   "pickles", "sandwich", "pancake", "eggs", "grapes"
+];
+
+var animalList = [
+  "kitten", "puppy", "donkey", "rabbit", "turkey",
+  "buffalo", "elephant", "monkey", "caterpillar", "crocodile",
+  "cheetah", "dolphin", "eagle", "flamingo", "gorilla",
+  "hamster", "turtle", "mouse", "lizard", "panda",
+  "raccoon", "tiger", "walrus", "zebra", "kangaroo"
+];
+
+var stateList = [
+  "alabama", "kentucky", "florida", "indiana", "nevada",
+  "ohio", "virginia", "texas", "california", "oklahoma",
+  "nebraska", "maryland", "oregon", "washington", "massachusetts",
+  "maine", "louisiana", "alaska", "arkansas", "hawaii",
+  "michigan", "georgia", "tennessee", "mississippi", "wisconsin"
 ];
 
 var alphabet = [
@@ -121,6 +133,37 @@ function getWord(category) {
     document.getElementById("word").appendChild(div);
     console.log(randomWord);
   }
+
+  if (category == "animals") {
+    randomWord = animalList[Math.random() * animalList.length | 0];
+    randomWord = randomWord.split("");
+    randomWord.forEach(function(letter) {
+      displayWord.push("_");
+    });
+    displayWord = displayWord.join(" ");
+
+    var div = document.createElement("div");
+    div.innerHTML = displayWord;
+    div.setAttribute("id", "word");
+    document.getElementById("word").appendChild(div);
+    console.log(randomWord);
+  }
+
+  if (category == "states") {
+    randomWord = stateList[Math.random() * stateList.length | 0];
+    randomWord = randomWord.split("");
+    randomWord.forEach(function(letter) {
+      displayWord.push("_");
+    });
+    displayWord = displayWord.join(" ");
+
+    var div = document.createElement("div");
+    div.innerHTML = displayWord;
+    div.setAttribute("id", "word");
+    document.getElementById("word").appendChild(div);
+    console.log(randomWord);
+  }
+
   updateWord()
 }
 
