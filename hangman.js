@@ -4,30 +4,16 @@ context.fillStyle = 'black';
 var turn = 0;
 var button;
 var wordList = [
-  "rails",
-  "angular",
-  "bootstrap",
-  "ruby",
-  "javaScript",
-  "authentication",
-  "function",
-  "array",
-  "object",
-  "sublime",
-  "github",
-  "agile",
-  "route",
-  "database",
-  "model",
-  "view",
-  "controller",
-  "terminal",
-  "array",
-  "data",
-  "inheritance",
-  "heroku",
-  "scope",
-  "closure"
+  "rails", "angular", "bootstrap", "ruby", "javaScript",
+  "authentication", "function", "array", "object", "sublime",
+  "github", "agile", "route", "database", "model", "view",
+  "controller", "terminal", "array", "data", "software",
+  "inheritance", "heroku", "scope", "closure", "alert",
+  "apple", "microsoft", "computer", "boolean", "variable",
+  "conditional", "string", "number", "python", "swift",
+  "java", "developer", "django", "framework", "loop",
+  "binary", "method", "class", "module","operator",
+  "program", "pseudocode", "public", "domain", "overload"
 ];
 
 var alphabet = [
@@ -81,7 +67,7 @@ function hang() {
       rightLeg();
       turn++;
       setTimeout(function() {
-        alert("You Lose!");
+        alert("You lose! The word was " + randomWord.join("") + ".");
       }, 200);
       myLetters = document.getElementById("letters");
       while (myLetters.firstChild) {
