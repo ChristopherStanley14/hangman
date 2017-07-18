@@ -4,11 +4,11 @@ context.fillStyle = 'black';
 var turn = 0;
 var button;
 var wordList = [
-  "Rails",
-  "AngularJS",
-  "Bootstrap",
-  "Ruby",
-  "JavaScript",
+  "rails",
+  "angular",
+  "bootstrap",
+  "ruby",
+  "javaScript",
   "authentication",
   "function",
   "array",
@@ -25,7 +25,7 @@ var wordList = [
   "array",
   "data",
   "inheritance",
-  "Heroku",
+  "heroku",
   "scope",
   "closure"
 ];
@@ -37,6 +37,7 @@ var alphabet = [
 
 var randomWord = wordList[Math.random() * wordList.length | 0];
 console.log(randomWord);
+var displayWord = [];
 
 function hang() {
   switch (turn) {
@@ -143,52 +144,117 @@ function rightLeg() {
 }
 
 function guess(e) {
-  // console.log(e);
+  displayWord = displayWord.split(" ");
+  var guess = false;
   document.getElementById(e).disabled = true;
-  var word = randomWord.toLowerCase().split("");
-  var guess = word.filter(function(letter) {
-    return letter == e;
-  });
-  if (guess.length > 0) {
-    // console.log(guess);
-    setupWord(e, true);
-  } else {
-    console.log("wrong");
-    hang();
+  // var word = randomWord.toLowerCase().split("");
+  // var wordLength = word.length;
+  // console.log(wordLength);
+  // var guess = word.filter(function(letter) {
+  //   return letter == e;
+  // });
+  // if (guess.length > 0) {
+  //   // console.log(guess);
+  //   setupWord(e, true);
+  // } else {
+  //   console.log("wrong");
+  //   hang();
+  // }
+  //
+
+  for (var i = 0; i < randomWord.length; i++) {
+    if (randomWord[i] == e) {
+      displayWord[i] = e;
+      guess = true;
+    }
   }
+
+    if (guess) {
+      displayWord = displayWord.join(" ");
+      updateWord();
+    } else {
+      displayWord = displayWord.join(" ");
+      hang();
+    }
+
+  console.log(displayWord)
 }
 
-function setupWord(letter, correct) {
+function updateWord() {
   var myNode = document.getElementById("word");
   while (myNode.firstChild) {
     myNode.removeChild(myNode.firstChild);
   }
 
-  if (correct) {
-    for (var i = 0; i < randomWord.length; i++) {
-      var div = document.createElement("div");
-      div.style.width = "25px";
-      div.style.height = "50px";
-      div.style.float = "left";
-      if (randomWord[i].toLowerCase() == letter) {
-        div.innerHTML = randomWord[i];
-      } else {
-        div.innerHTML = "_";
-      }
-      document.getElementById("word").appendChild(div);
-      div.setAttribute("class", randomWord[i]);
-    }
+  var div = document.createElement("div");
+  div.innerHTML = displayWord;
+  document.getElementById("word").appendChild(div);
+  checkWin();
+}
+
+function checkWin() {
+  console.log(displayWord);
+  var win = false;
+  if (displayWord.indexOf('_') > -1) {
+    win = false;
   } else {
-    for (var i = 0; i < randomWord.length; i++) {
-      var div = document.createElement("div");
-      div.style.width = "25px";
-      div.style.height = "50px";
-      div.style.float = "left";
-      div.innerHTML = "_";
-      document.getElementById("word").appendChild(div);
-      div.setAttribute("class", randomWord[i]);
-    }
+    win = true;
   }
+
+  if (win) {
+    setTimeout(function() {
+      alert("You Win!");
+    }, 200);
+  }
+}
+
+function setupWord() {
+  // var myNode = document.getElementById("word");
+  // while (myNode.firstChild) {
+  //   myNode.removeChild(myNode.firstChild);
+  // }
+  //
+  // if (correct) {
+  //   for (var i = 0; i < randomWord.length; i++) {
+  //     var div = document.createElement("div");
+  //     div.setAttribute("id", "found");
+  //     div.style.width = "25px";
+  //     div.style.height = "50px";
+  //     div.style.float = "left";
+  //     if (randomWord[i].toLowerCase() == letter) {
+  //       div.innerHTML = randomWord[i];
+  //     } else {
+  //       div.innerHTML = "_";
+  //     }
+  //     document.getElementById("word").appendChild(div);
+  //     div.setAttribute("class", randomWord[i]);
+  //   }
+  // } else {
+  //   for (var i = 0; i < randomWord.length; i++) {
+  //     var div = document.createElement("div");
+  //     div.setAttribute("id", "unfound");
+  //     div.style.width = "25px";
+  //     div.style.height = "50px";
+  //     div.style.float = "left";
+  //     div.innerHTML = "_";
+  //     document.getElementById("word").appendChild(div);
+  //     div.setAttribute("class", randomWord[i]);
+  //   }
+  // }
+
+
+    randomWord = randomWord.split("");
+    randomWord.forEach(function(letter) {
+      displayWord.push("_");
+    });
+    displayWord = displayWord.join(" ");
+
+    var div = document.createElement("div");
+    div.innerHTML = displayWord;
+    document.getElementById("word").appendChild(div);
+
+
+
 }
 
 function setupButtons() {
@@ -206,4 +272,4 @@ function setupButtons() {
 }
 
 setupButtons();
-setupWord(null, false);
+setupWord(false);
