@@ -58,115 +58,54 @@ function getCategory() {
 }
 
 function resetButtons() {
-  document.getElementById('a').disabled = false;
-  document.getElementById('b').disabled = false;
-  document.getElementById('c').disabled = false;
-  document.getElementById('d').disabled = false;
-  document.getElementById('e').disabled = false;
-  document.getElementById('f').disabled = false;
-  document.getElementById('g').disabled = false;
-  document.getElementById('h').disabled = false;
-  document.getElementById('i').disabled = false;
-  document.getElementById('j').disabled = false;
-  document.getElementById('k').disabled = false;
-  document.getElementById('l').disabled = false;
-  document.getElementById('m').disabled = false;
-  document.getElementById('n').disabled = false;
-  document.getElementById('o').disabled = false;
-  document.getElementById('p').disabled = false;
-  document.getElementById('q').disabled = false;
-  document.getElementById('r').disabled = false;
-  document.getElementById('s').disabled = false;
-  document.getElementById('t').disabled = false;
-  document.getElementById('u').disabled = false;
-  document.getElementById('v').disabled = false;
-  document.getElementById('w').disabled = false;
-  document.getElementById('x').disabled = false;
-  document.getElementById('y').disabled = false;
-  document.getElementById('z').disabled = false;
+  for (var i = 0; i < alphabet.length; i++) {
+    document.getElementById(alphabet[i]).disabled = false;
+  }
 }
-
 
 function getWord(category) {
   if (category == "all") {
     wordList = programmingList.concat(foodList);
     randomWord = wordList[Math.random() * wordList.length | 0];
-    randomWord = randomWord.split("");
-    randomWord.forEach(function(letter) {
-      displayWord.push("_");
-    });
-    displayWord = displayWord.join(" ");
-
-    var div = document.createElement("div");
-    div.innerHTML = displayWord;
-    div.setAttribute("id", "word");
-    document.getElementById("word").appendChild(div);
-    console.log(randomWord);
+    prepareWordList();
   }
 
   if (category == "food") {
     randomWord = foodList[Math.random() * foodList.length | 0];
-    randomWord = randomWord.split("");
-    randomWord.forEach(function(letter) {
-      displayWord.push("_");
-    });
-    displayWord = displayWord.join(" ");
-
-    var div = document.createElement("div");
-    div.innerHTML = displayWord;
-    div.setAttribute("id", "word");
-    document.getElementById("word").appendChild(div);
-    console.log(randomWord);
+    prepareWordList();
   }
 
   if (category == "programming") {
     randomWord = programmingList[Math.random() * programmingList.length | 0];
-    randomWord = randomWord.split("");
-    randomWord.forEach(function(letter) {
-      displayWord.push("_");
-    });
-    displayWord = displayWord.join(" ");
-
-    var div = document.createElement("div");
-    div.innerHTML = displayWord;
-    div.setAttribute("id", "word");
-    document.getElementById("word").appendChild(div);
-    console.log(randomWord);
+    prepareWordList();
   }
 
   if (category == "animals") {
     randomWord = animalList[Math.random() * animalList.length | 0];
-    randomWord = randomWord.split("");
-    randomWord.forEach(function(letter) {
-      displayWord.push("_");
-    });
-    displayWord = displayWord.join(" ");
-
-    var div = document.createElement("div");
-    div.innerHTML = displayWord;
-    div.setAttribute("id", "word");
-    document.getElementById("word").appendChild(div);
-    console.log(randomWord);
+    prepareWordList();
   }
 
   if (category == "states") {
     randomWord = stateList[Math.random() * stateList.length | 0];
-    randomWord = randomWord.split("");
-    randomWord.forEach(function(letter) {
-      displayWord.push("_");
-    });
-    displayWord = displayWord.join(" ");
-
-    var div = document.createElement("div");
-    div.innerHTML = displayWord;
-    div.setAttribute("id", "word");
-    document.getElementById("word").appendChild(div);
-    console.log(randomWord);
+    prepareWordList();
   }
 
   updateWord()
 }
 
+function prepareWordList() {
+  randomWord = randomWord.split("");
+  randomWord.forEach(function(letter) {
+    displayWord.push("_");
+  });
+
+  displayWord = displayWord.join(" ");
+  var div = document.createElement("div");
+  div.innerHTML = displayWord;
+  div.setAttribute("id", "word");
+  document.getElementById("word").appendChild(div);
+  console.log(randomWord);
+}
 
 function hang() {
   switch (turn) {
@@ -216,7 +155,6 @@ function hang() {
       while (myLetters.firstChild) {
         myLetters.removeChild(myLetters.firstChild);
       }
-
       break;
   }
 }
@@ -349,7 +287,6 @@ function setupButtons() {
     });
   });
 }
-
 
 setupButtons();
 setupWord();
