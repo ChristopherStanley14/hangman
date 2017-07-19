@@ -42,7 +42,7 @@ var alphabet = [
 ];
 
 var displayWord = [];
-var wordList = programmingList.concat(foodList);
+var wordList = programmingList.concat(foodList, animalList, stateList);
 var randomWord = wordList[Math.random() * wordList.length | 0];
 console.log(randomWord);
 
@@ -152,9 +152,9 @@ function hang() {
         alert("You lose! The word was " + randomWord.join("") + ".");
       }, 200);
       myLetters = document.getElementById("letters");
-      while (myLetters.firstChild) {
-        myLetters.removeChild(myLetters.firstChild);
-      }
+      // while (myLetters.firstChild) {
+      //   myLetters.removeChild(myLetters.firstChild);
+      // }
       break;
   }
 }
@@ -289,7 +289,6 @@ function setupButtons() {
 }
 
 function restart() {
-  context.clearRect(0, 0, canvas.width, canvas.height);
   getCategory();
 }
 

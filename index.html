@@ -16,14 +16,14 @@
   <div id="word" class="col-md-12 text-center"></div>
   <div id="letters" class="col-md-12 text-center"></div>
   <select id="category" name="category" onchange="getCategory()">
-    <option disabled selected hidden value="category">Category</option>
+    <option disabled selected hidden value="all">Category</option>
     <option value="all">All</option>
     <option value="programming">Programming</option>
     <option value="food">Food</option>
     <option value="animals">Animals</option>
     <option value="states">States</option>
   </select>
-  <button onclick="location=''" class="btn btn-danger text-center">Restart</button>
+  <button onclick="restart()" class="btn btn-danger text-center">Restart</button>
   <script type="text/javascript" src="hangman.js"></script>
 </body>
 
