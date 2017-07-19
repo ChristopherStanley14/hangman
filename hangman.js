@@ -286,7 +286,22 @@ function setupButtons() {
       guess(e);
     });
   });
+  document.body.addEventListener('keydown', function(e) {
+    console.log(e.key);
+    var letter = false;
+    for (var i = 65; i <= 90; i++) {
+      if (i == e.keyCode) {
+        letter = true;
+        break;
+      }
+    }
+    if (letter) {
+      guess(e.key);
+    }
+  });
 }
+
+
 
 function restart() {
   getCategory();
